@@ -17,13 +17,13 @@ var result=[]
 }
 generateAlphabetBoard(3);
 
-function checkConsonantInBox(box,three_box_area){
+function checkConsonantInBox(box,area){
 var konsonan='BCDFGHJKLMNPQRSTVWXYZ'
   for (var i = 0; i < box.length; i++) {
       let huruf =box[i]
     for (var j = 0; j < huruf.length; j++) {
       for (var k = 0; k < konsonan.length; k++) {
-        if(huruf[j]!==konsonan[k]){// seharusnya cek untuk semua index di area 7 baru return
+        if(huruf[j]!==konsonan[k]){// seharusnya cek untuk semua index di area 7 baru return true atau false
           return false;
         }
       }
