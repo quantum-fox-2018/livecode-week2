@@ -120,11 +120,6 @@ class Monster{
 
 
 
-// 1. Name: Rikimaru, Job: Assassin, Health: 1200, Mana: 543, attack: 431, Money: 1200
-// 2. Name: Leonidas, Job: Knight, Health: 3213, Mana: 126, attack: 431, Money: 1700
-// 3. Name: Gandalf, Job: Mage, Health: 1130, Mana: 603, attack: 231, Money: 2500
-// 4. Name: Ezio, Job: Assassin, Health: 1250, Mana: 523, attack: 431, Money: 2100
-
 let rikimaru = new Assassin('Rikimaru','Assassin',1200,543,431,1200)
 let leonidas = new Knight('Leonidas','Knight',3213,126,431,1700)
 let gandalf = new Mage('Gandalf','Mage',1130,603,231,2500)
@@ -135,12 +130,6 @@ console.log(leonidas.skill());
 console.log(gandalf.skill());
 console.log(ezio.skill());
 
-// nama: untuk menyimpan nama dari item tersebut
-// job: untuk mentukan job apa saya yang bisa menggunakan item ini
-// price: adalah harga dari item tersebut
-// healthpoint: jumlah health yang akan bertambah ke dalam health karakter
-// manapoint: jumlah mana yang akan bertambah ke dalam mana karakter
-// attackpoint: jumlah attack yang akan bertambah ke dalam attack karakter
 
 let sword = new Item('Sword','Knight',511,50,20,50)
 let stick = new Item('Stick','Mage',411,40,30,40)
@@ -148,18 +137,15 @@ let stick = new Item('Stick','Mage',411,40,30,40)
 leonidas.buyItem(sword)
 rikimaru.buyItem(stick)
 gandalf.buyItem(stick)
+console.log(leonidas);
+console.log(rikimaru);
 console.log(gandalf);
 gandalf.sellItem(stick)
 console.log(gandalf);
-// console.log(leonidas);
-// console.log(rikimaru);
+
 
 let dementor = new Monster('Dementor', 900, 300,'Knight')
 let draco = new Monster('Draco', 800, 200,'Assasin')
 
 leonidas.attack(dementor)
-console.log(leonidas);
-console.log(dementor);
 leonidas.attack(dementor)
-console.log(leonidas);
-console.log(dementor);
