@@ -40,12 +40,6 @@ class Character{
   }
 
   sellItem(itemsTerjual){
-    // - kurangkan status health karakter berdasarkan healthpoint item
-    // - kurangkan status mana karakter berdasarkan manapoint item
-    // - kurangkan status defense karakter berdasarkan defensepoint item
-    // - tambahkan uang karakter berdasarkan 50% dari harga item.
-    // - kurangkan object item dari properti items
-
     var initialItems = this.items;
     this.items =[];
     this.itemsImproveStatus();
