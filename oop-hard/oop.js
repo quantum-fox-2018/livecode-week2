@@ -12,20 +12,44 @@ class Hero {
         this.skill = ''
     }
 
-    buyItem(item) {
+    buyItem(hero, item) {
+        if(hero.job == item.job) {
+            if(hero.money > item.price) {
 
-        for (let i = 0; i < item.length; i++) {
-            
-            if(this.job == item[i].job) {
-                if(this.money > item[i].price) {
+                hero.health += item.healthpoint
+                hero.mana += item.manapoint
+                hero.attack += item.attackpoint
+                hero.money -= item.price
 
-                    this.health += 
-                }
-                
+                hero.items.push(item.name)
             } else {
 
-
+                return 'duitnya ga cukup ngepet dulu sana'
             }
+                
+        } else {
+
+            return 'Job tidak sesuai'
+        }
+
+        return hero
+        // console.log(item)
+    }
+
+    sellItem(hero, item) {
+
+        hero.health -= item.healthpoint
+        hero.mana -= item.manapoint
+        hero.attack -= item.attackpoint
+        hero.price += item.price
+
+        for (let i = 0; i < hero.items.length; i++) {
+            
+            if (hero.items[i] == item.name) {
+
+                hero.items[i] = ''
+            }
+
         }
     }
 
@@ -94,21 +118,39 @@ class Item {
 
 //     }
 // }
+
+/*========================================================*/
+
+class Monster{
+
+    constructor(name, health, attack, weakness){
+
+        this.name = name
+        this.health = health
+        this.attack = attack
+        this.weakness = weakness
+    }
+}
+
 let hero = new Hero()
 let assasin = new Assasin('Rikimaru','Assasin',1200,543,431,1200)
 let knight = new Knight('Leonidas','Knight',3213,126,431,1700)
 let mage = new Mage('Gandalf','Mage',1130,603,231,2500)
 let assasin2 = new Assasin('Ezio','Assasin',1250,523,431,2100)
-// console.log(assasin)
 // console.log(knight)
 // console.log(mage)
 // console.log(assasin2)
 
-let itemBiasa = new Item('Pedang Tusuk Gigi','Assasin',2000,150,50,1700)
+let itemBiasa = new Item('Pedang Tusuk Gigi','Assasin',500,150,50,1700)
 let itemRare = new Item('Perisai Anti Galau','Assasin',1200,100000,100,50)
 // console.log(item)
 // console.log(item2)
+// console.log(itemBiasa)
+hero.buyItem(assasin,itemBiasa)
+hero.sellItem(assasin,itemBiasa)
+// console.log(assasin)
 
-let arrItem = [itemBiasa, itemRare] 
+let monsterKodok = new Monster('Kodok Ngorek',1000,200,'Assasin')
+let monsterKecoa = new Monster('Kecoa Terbang',1000,200,'Mage')
 
-hero.buyItem(arrItem)
+// console.log(monsterKodok)
