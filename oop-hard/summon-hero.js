@@ -136,7 +136,7 @@ class Monster {
 
 class Darklord extends Monster {
   constructor() {
-    super('Darklord', 9999, 200, 'Knight');
+    super('Darklord', 4000, 200, 'Knight');
   }
 }
 
@@ -156,7 +156,7 @@ var ezio = new Assassin('Ezio', 'Assassin', 1250, 523, 431, 2100);
 var darklord = new Darklord();
 var darkling = new Darkling();
 heroes.push(rikimaru, leonidas, gandalf, ezio);
-heroes.push(darklord, darkling);
+monsters.push(darklord, darkling);
 // console.log(heroes);
 
 //item
@@ -174,21 +174,51 @@ console.log();
 //sell item
 leonidas.sellItem(broadsword)
 console.log(leonidas);
+console.log('');
+// while (darklord.health > 0) {
+//   darklord.health -= 1000;
+//   if (darklord.health <= 0) {
+//     console.log('dead');
+//   } else {
+//     console.log('attack');
+//   }
+// }
 
-
+console.log(`\n------------BATTLE START-----------`);
 while (darklord.health > 0) {
+  console.log(`\n>>>> HEROES TURN:`);
   for (let i in heroes) {
     let heroDamage = heroes[i].attack;
     for (let j in monsters) {
       if (monsters[j].weakness == heroes[i].job) {
         heroDamage += heroDamage * 0.5;
+        console.log(`${heroes[i].name} attack boosted!`);
       }
       monsters[j].health -= heroDamage;
-      console.log(`**Kamu Berhasil Menyerang ${monsters[j].name} dengan jumlah serangan ${heroDamage}. Darah kamu terisaa ${heroes[i].health} jadi barhati-hatilah**`);
+      console.log(`**${heroes[i].name} Berhasil Menyerang ${monsters[j].name} dengan jumlah serangan ${heroDamage}. Darah ${heroes[i].name} terisa ${heroes[i].health} jadi barhati-hatilah**`);
+
       if (monsters[j].health <= 0) {
         monsters[j].health = 0;
-        console.log(`**Kamu berhasil membunuh monster ${monsters[j].name}. dan sisa darah kamu adalah ${heroes[i].health}**`);
+        console.log(`**${heroes[i].name} berhasil membunuh monster ${monsters[j].name}. dan sisa darah ${heroes[i].name} adalah ${heroes[i].health}**`);
         monsters.splice(j, 1);
+      }
+    }
+  }
+
+  console.log(`\n>>>> MONSTERS TURN`);
+  if (darklord.health == 0) {
+    console.log(`All MONSTERS ARE DEAD!! YOU WIN!! CONGRATULATION!!! *SFX:VICTORY*`);
+  }
+  for (let a in monsters) {
+    let monsterDamage = monsters[a].attack;
+    for (let b in heroes) {
+      heroes[a].health -= monsterDamage;
+      console.log(`**${monsters[a].name} Berhasil Menyerang ${heroes[b].name} dengan jumlah serangan ${monsterDamage}. Darah kamu tersisa ${heroes[b].health} jadi barhati-hatilah**`);
+
+      if (heroes[b].health <= 0) {
+        heroes[b].health = 0;
+        console.log(`**${heroes[b].name} kalah sebaiknya pulang ke kota dan beli item lagi**`);
+        heroes.splice(b, 1);
       }
     }
   }
