@@ -52,28 +52,32 @@ let refresh = new Item({
 let attackk = new Item({
   name: "Attack",
   job: ["Assassin", "Knight", "Mage"],
-  price: 200,
+  price: 1000,
   healthpoint: 0,
   manapoint: 0,
   attackpoint: 200
 });
 
-console.log(rikimaru.buyItem(attackk));
+console.log(leonidas.buyItem(refresh));
+
+console.log(gandalf.buyItem(attackk));
+console.log(gandalf.buyItem(attackk));
+console.log(gandalf.buyItem(attackk));
 //console.log(rikimaru.sellItem(attackk));
-console.log(rikimaru);
+console.log(gandalf);
 
 let monsterKucing = new Monster({
   name: "Monster Kucing",
   health: 3000,
-  attack: 100,
+  attack: 1000,
   weakness: ["Assassin", "Knight"],
 });
 
 let monsterPanda = new Monster({
   name: "Monster Panda",
   health: 2500,
-  attack: 200,
+  attack: 1000,
   weakness: ["Assassin", "Mage"],
 });
 
-rikimaru.attackMonster(monsterKucing);
+gandalf.attackMonster(monsterKucing);

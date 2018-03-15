@@ -9,16 +9,12 @@ function generateAlphabetBox(num) {
   let str;
   for(let i = 0; i < num; i++) {
     arr.push([]);
-    str = "";
     for(let j = 0; j < num; j++) {
-      str+=randomHuruf();
+      arr[i].push(randomHuruf());
     }
-    arr[i].push(str);
   }
   return arr;
 }
-
-console.log(generateAlphabetBox(3));
 
 function generateAlphabetBoard(num) {
   let board = [];
@@ -31,8 +27,32 @@ function generateAlphabetBoard(num) {
   return board;
 }
 
+function checkVokal(cek) {
+  let vokal = ["A", "I", "U", "E", "O"];
+  for(let i in vokal) {
+    if(vokal[i] == cek) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function checkConsonantInBox(board, row, col) {
+  let checkRow = Math.floor(row/board.length);
+  let checkCol = Math.floor(col/board.length);
+
+  for(let i = 0; i < board.length; i++) {
+    for(let j = 0; j < board.length; j++) {
+      if(checkVokal(board[checkRow][checkCol][i][j])) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
 let board = generateAlphabetBoard(3);
-console.log(board);
+
 for(let i in board) {
   for(let j in board[i]) {
     console.log(board[i][j]);
@@ -40,6 +60,12 @@ for(let i in board) {
   console.log();
 }
 
-function checkConsonantInBox(row, col) {
-  if(row )
-}
+console.log("0, ", checkConsonantInBox(board, 0, 0));
+console.log("1, ", checkConsonantInBox(board, 0, 4));
+console.log("2, ", checkConsonantInBox(board, 0, 7));
+console.log("3, ", checkConsonantInBox(board, 4, 0));
+console.log("4, ", checkConsonantInBox(board, 4, 4));
+console.log("5, ", checkConsonantInBox(board, 7, 7));
+console.log("6, ", checkConsonantInBox(board, 7, 0));
+console.log("7, ", checkConsonantInBox(board, 7, 4));
+console.log("8, ", checkConsonantInBox(board, 7, 7));

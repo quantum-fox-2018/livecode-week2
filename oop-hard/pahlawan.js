@@ -22,6 +22,7 @@ class Pahlawan {
         this.mana += newItem.manapoint;
         this.attack += newItem.attackpoint;
         this.items.push(newItem);
+        return `item "${newItem.name}" berhasil ditambahkan ke ${this.name}`
       }
     }
   }
@@ -43,6 +44,7 @@ class Pahlawan {
           this.items.splice(i, 1);
         }
       }
+      return `item "${deleteItem.name}" berhasil dihapus dari ${this.name}`
     } else {
       return "item tidak ada"
     }
@@ -71,6 +73,7 @@ class Pahlawan {
         if(monster.health <= 0) {
           isMonsterAlive = false;
         }
+        console.log(`Kamu berhasil menyerang ${monster.name} dengan jumlah serangan ${jumlahAttack}. Darah kamu tersisa ${this.health} jadi berhati-hatilah.`);
       }
       if(isMonsterAlive) {
         this.health -= monster.attack;
@@ -78,7 +81,6 @@ class Pahlawan {
           isAlive = false;
         }
       }
-      console.log(`Kamu berhasil menyerang ${monster.name} dengan jumlah serangan ${jumlahAttack}. Darah kamu tersisa ${this.health} jadi berhati-hatilah.`);
     }
     if(isAlive) {
       console.log(`Kamu berhasil membutuh ${monster.name}. dan sisa darah kamu adalah ${this.health}.`);
