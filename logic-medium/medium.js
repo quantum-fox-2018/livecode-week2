@@ -34,8 +34,8 @@ function checkConsonantInBox(row, column){
     }
   }
 
-  console.log(AngkaArr);
-  console.log(rowCoordinat, ColumCoordinat);
+  // console.log(AngkaArr);
+  // console.log(rowCoordinat, ColumCoordinat);
 
   for (var i = rowCoordinat; i < rowCoordinat+size; i++) {
     for (var j= ColumCoordinat; j < ColumCoordinat+size; j++) {
