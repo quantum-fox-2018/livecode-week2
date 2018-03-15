@@ -18,6 +18,19 @@ class Hero{
       this._money-=item._price
       this._items.push(item)
     }
+  }
+
+  sellItem(item){
+      this._health-=item._healthpoint
+      this._mana-=item._manapoint
+      this._attack-=item._attackpoint
+      this._money+=(item._price/2)
+
+      for (let i = 0; i < this._items.length; i++) {
+        if(this._items[i]._nama===item._nama){
+          this._items.splice(i,1)
+        }
+      }
 
   }
 
@@ -40,6 +53,11 @@ class Hero{
       this._health-=monster._attack
       monster._health-=this._attack
       console.log('Kamu kalah sebaiknya pulang ke kota dan beli item lagi');
+    }
+    else if(monster._health-this._attack<=0 && this._health-monster._attack<=0){
+      monster._health-=this._attack
+      console.log('Kamu berhasil membunuh monster '+monster._name+'. dan sisa darah kamu adalah '+this._health);
+      this._health-=monster._attack
     }
 
   }
@@ -130,7 +148,9 @@ let stick = new Item('Stick','Mage',411,40,30,40)
 leonidas.buyItem(sword)
 rikimaru.buyItem(stick)
 gandalf.buyItem(stick)
-
+console.log(gandalf);
+gandalf.sellItem(stick)
+console.log(gandalf);
 // console.log(leonidas);
 // console.log(rikimaru);
 
@@ -138,7 +158,8 @@ let dementor = new Monster('Dementor', 900, 300,'Knight')
 let draco = new Monster('Draco', 800, 200,'Assasin')
 
 leonidas.attack(dementor)
+console.log(leonidas);
+console.log(dementor);
 leonidas.attack(dementor)
-
 console.log(leonidas);
 console.log(dementor);
