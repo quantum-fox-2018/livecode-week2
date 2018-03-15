@@ -8,35 +8,6 @@ class Hero {
     this.money = money
     this.items = []
   }
-
-  buyItems(){
-    for(let i=0; i<specialItems.length; i++){
-      for(let j=0; j<specialItems[i].jobs.length; j++){
-        if(specialItems[i].jobs[j]==this.job){
-          this.items.push(specialItems[i])
-          this.health += specialItems[i].healthpoint
-          this.mana += specialItems[i].manapoint
-          this.attack += specialItems[i].attackpoint
-          this.money -= specialItems[i].price
-        }
-      }
-    }
-  }
-
-  sellItems(name){
-    let newArray = []
-    for(let i=0; i<this.items.length; i++){
-      if(name==this.items[i].nama){
-        this.health -= specialItems[i].healthpoint
-        this.mana -= specialItems[i].manapoint
-        this.attack -= specialItems[i].attackpoint
-        this.money += specialItems[i].price
-      } else {
-        newArray.push(this.items[i])
-      }
-    }
-    this.items = newArray
-  }
 }
 
 class Assassin extends Hero {
@@ -69,7 +40,7 @@ class EditHero {
   static buyItems(heroName){
     for(let i=0; i<specialItems.length; i++){
       for(let j=0; j<specialItems[i].jobs.length; j++){
-        if(specialItems[i].jobs[j]==heroName.job){
+        if(specialItems[i].jobs[j]==heroName.job && heroName.money >= specialItems[i].price){
           heroName.items.push(specialItems[i])
           heroName.health += specialItems[i].healthpoint
           heroName.mana += specialItems[i].manapoint
@@ -80,7 +51,7 @@ class EditHero {
     }
   }
 
-  static sellItems(item, heroName){
+  static sellItem(item, heroName){
     let newArray = []
     for(let i=0; i<heroName.items.length; i++){
       if(item.nama==heroName.items[i].nama){
@@ -89,12 +60,43 @@ class EditHero {
         heroName.attack -= item.attackpoint
         heroName.money += item.price
       } else {
-        newArray.push(this.items[i])
+        newArray.push(heroName.items[i])
       }
     }
     heroName.items = newArray
   }
 
+}
+
+class Monster {
+  constructor(name,health,attack,weakness) {
+    this.name = name
+    this.health = health
+    this.attack = attack
+    this.weakness = weakness
+  }
+}
+
+class Battle {
+  static attack(hero,monster){
+    let newAttack
+    if(monster.weakness == hero.job){
+      newAttack = hero.attack*1.5
+      monster.health -= newAttack
+    } else {
+      newAttack = hero.attack
+      monster.health -= hero.attack
+    }
+    if(monster.health>0){
+      hero.health -= monster.attack
+    } else {
+      return `Kamu berhasil membunuh monster ${monster.name}. dan sisa darah kamu adalah ${hero.health}`
+    }
+    if(monster.attack>=hero.health || hero.health==0){
+      return `Kamu kalah sebaiknya pulang ke kota dan beli item lagi`
+    }
+    return `Kamu Berhasil Menyerang ${monster.name} dengan jumlah serangan ${newAttack} Darah kamu tersisa ${hero.health} jadi berhati-hatilah`
+  }
 }
 
 var specialItems = [{
@@ -118,15 +120,16 @@ let leonidas = EditHero.makeHero('Leonidas','Knight',3213,126,431,1700)
 let gandalf = EditHero.makeHero('Gandalf','Mage',1130,603,231,2500)
 let ezio = EditHero.makeHero('Ezio','Assassin',1250,523,431,2100)
 
-EditHero.buyItems(rikimaru)
-// nama: untuk menyimpan nama dari item tersebut
-// job: untuk mentukan job apa saya yang bisa menggunakan item ini
-// price: adalah harga dari item tersebut
-// healthpoint: jumlah health yang akan bertambah ke dalam health karakter
-// manapoint: jumlah mana yang akan bertambah ke dalam mana karakter
-// defensepoint: jumlah defense yang akan bertambah ke dalam defense karakter
+let picolo = new Monster('Picolo',1000,300,'Knight')
+let bhu = new Monster('Bhu',1500,1000,'Assassin')
 
-console.log(rikimaru)
-console.log(leonidas)
-console.log(gandalf)
-console.log(ezio)
+EditHero.buyItems(rikimaru)
+EditHero.buyItems(leonidas)
+EditHero.buyItems(gandalf)
+EditHero.buyItems(ezio)
+// EditHero.sellItem(specialItems[0],leonidas)
+// console.log(rikimaru)
+// console.log(leonidas)
+// console.log(gandalf)
+// console.log(ezio)
+console.log(Battle.attack(rikimaru,bhu))

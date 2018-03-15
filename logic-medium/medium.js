@@ -31,6 +31,6 @@ function checkConsonantInBox(x,y,num){
 }
 
 var grid = 3
-console.log(checkConsonantInBox(4,3,grid));
+// console.log(checkConsonantInBox(4,3,grid));
 console.log(checkConsonantInBox(5,7,grid));
-console.log(checkConsonantInBox(1,2,grid));
+// console.log(checkConsonantInBox(1,2,grid));
