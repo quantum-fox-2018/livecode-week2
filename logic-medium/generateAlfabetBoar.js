@@ -16,25 +16,40 @@ function generateAlphabetBox(dimensi){
   }
   return arrBoard
 }
-console.log(generateAlphabetBox(3))
+// console.log(generateAlphabetBox(3))
 
 // # Release 1
 function checkConsonantInBox(row,column,dimensi){
   let board = generateAlphabetBox(dimensi)
-  let posisiRow = Math.round((row/dimensi)*dimensi)
-  let posisiColumn = Math.round((column/dimensi)*dimensi)
+  let posisiRow = Math.floor((row/dimensi)*dimensi) // rumusnya aga-aga lupa ey, sebenarnya buat nyari posisiX
+  let posisiColumn = Math.floor((column/dimensi)*dimensi) // rumusnya aga-aga lupa ey, sebenarnya buat nyari posisiY
   // console.log(posisiRow)
   // console.log(posisiColumn)
+  // misal koordinat [0,0]
+  // posisiRow = 3
+  // posisiColumn = 3
+  //---------------------------
   let arrBox = []
-  for(let i=posisiRow; i<dimensi; i++){
+  let panjangRow = posisiRow + dimensi
+  let tinggiColoum = posisiColumn + dimensi
+
+  for(let i=posisiRow; i<panjangRow; i++){
     let arrKoordinat = []
-    for(let j=posisiColumn; j<dimensi; j++){
-      arrKoordinat.push(board[i])
-      arrKoordinat.push(board[j])
+    for(let j=posisiColumn; j<tinggiColoum; j++){
+      arrBox.push(board[i][j])
+      // arrKoordinat.push(board[i][j])
     }
-    arrBox.push(arrKoordinat)
+    // console.log(arrKoordinat)
+    // arrBox.push(arrKoordinat)
   }
-  console.log(arrBox)
+  // console.log(arrBox)
+  // console.log(arrBox)
+  // let hurufVokal = 'AIUEO'
+  if(arrBox.indexOf('A')!==-1 || arrBox.indexOf('I')!==-1 || arrBox.indexOf('U')!==-1 || arrBox.indexOf('E')!==-1 || arrBox.indexOf('O')!==-1){
+    return false
+  }else {
+    return true
+  }
 
 }
 console.log(checkConsonantInBox(2,4,3))
