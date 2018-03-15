@@ -1,9 +1,10 @@
 class Character{
-  constructor(characterName,health,mana,defense,money,items){
+  constructor(characterName,job,health,mana,defense,money,items){
     this.characterName = characterName;
-    this.health = null;
-    this.mana = null;
-    this.defense = null;
+    this.job = '';
+    this.health = 0;
+    this.mana = 0;
+    this.defense = 0;
     this.money = 0;
     this.items = [];
   }
@@ -11,18 +12,67 @@ class Character{
   skill(){
     return 'belum ada skill';
   }
+
+  itemsImproveStatus(){
+
+    for(let i=0;i<this.items.length;i++){
+
+      for(let j=0;j<this.items[i].itemsJob.length;j++){
+        if(this.items[i].itemsJob[j] == this.job){
+          this.health = this.health + this.items[i].itemsHealthPoint;
+          this.mana = this.mana + this.items[i].itemsManaPoint;
+          this.defense = this.defense + this.items[i].itemsDefensePoint;
+          break;
+        }
+      }
+    }
+  }
+
+  buyItem(newItems){
+    if(this.money >= newItems.itemsPrice){
+      this.money = this.money - newItems.itemsPrice;
+      this.items.push(newItems);
+      this.itemsImproveStatus();
+    }
+    else{
+      console.log('gak ada uang');
+    }
+  }
+
+  sellItem(itemsTerjual){
+    // - kurangkan status health karakter berdasarkan healthpoint item
+    // - kurangkan status mana karakter berdasarkan manapoint item
+    // - kurangkan status defense karakter berdasarkan defensepoint item
+    // - tambahkan uang karakter berdasarkan 50% dari harga item.
+    // - kurangkan object item dari properti items
+
+    var initialItems = this.items;
+    this.items =[];
+    this.itemsImproveStatus();
+
+    this.money = this.money + itemsTerjual.itemsPrice;
+
+    for(let i=0;i<initialItems.length;i++){
+      if(initialItems[i].itemsName == itemsTerjual.itemsName){
+        initialItems.splice(i,1);
+      }
+    }
+    this.items=initialItems
+    this.itemsImproveStatus();
+  }
 }
 
 class Assassin extends Character{
-  constructor(characterName,health,mana,defense,money,items){
-    super(characterName,health,mana,defense,money,items)
+  constructor(characterName,job,health,mana,defense,money,items){
+    super(characterName,job,health,mana,defense,money,items)
     this.characterName = characterName;
-    this.job = 'Assassin';
+    this.job = job;
     this.health = health;
     this.mana = mana;
     this.defense = defense;
     this.money = money;
-    this.items = [];
+    this.items = items;
+    this.itemsImproveStatus();
   }
   skill(){
     return 'Ciat..! Serangan tanpa bayangan..'
@@ -30,15 +80,17 @@ class Assassin extends Character{
 }
 
 class Knight extends Character{
-  constructor(characterName,health,mana,defense,money,items){
-    super(characterName,health,mana,defense,money,items)
+  constructor(characterName,job,health,mana,defense,money,items){
+    super(characterName,job,health,mana,defense,money,items)
     this.characterName = characterName;
-    this.job = 'Knight';
+    this.job = job;
     this.health = health;
     this.mana = mana;
     this.defense = defense;
     this.money = money;
-    this.items = [];
+    this.items = items;
+    this.itemsImproveStatus();
+
   }
   skill(){
     return 'Lemparan Perisai Suci'
@@ -46,27 +98,21 @@ class Knight extends Character{
 }
 
 class Mage extends Character{
-  constructor(characterName,health,mana,defense,money,items){
-    super(characterName,health,mana,defense,money,items)
+  constructor(characterName,job,health,mana,defense,money,items){
+    super(characterName,job,health,mana,defense,money,items)
     this.characterName = characterName;
-    this.job = 'Mage';
+    this.job = job;
     this.health = health;
     this.mana = mana;
     this.defense = defense;
     this.money = money;
-    this.items = [];
+    this.items = items;
+    this.itemsImproveStatus();
   }
   skill(){
     return 'Terimalah serangan sihir ini..'
   }
 }
-//
-// nama: untuk menyimpan nama dari item tersebut
-// job: untuk mentukan job apa saya yang bisa menggunakan item ini
-// price: adalah harga dari item tersebut
-// healthpoint: jumlah health yang akan bertambah ke dalam health karakter
-// manapoint: jumlah mana yang akan bertambah ke dalam mana karakter
-// defensepoint: jumlah defense yang akan bertambah ke dalam defense karakter
 
 class Items{
   constructor(itemsJob,itemsPrice,itemsHealthPoint,itemsManaPoint,itemsDefensePoint){
@@ -91,7 +137,27 @@ class Pedang extends Items{
   }
 }
 
-let rikimaru = new Assassin('Rikimaru',1200,543,431,1200,[]);
-let leonidas = new Knight('Leonidas',3213,126,431,1700,[]);
-let gandalf = new Mage('Gandalf',1130,603,231,2500,[]);
-let ezio = new Assassin('Ezio',1250,523,431,2100,[]);
+class TongkatSihir extends Items{
+  constructor(itemsName,itemsJob,itemsPrice,itemsHealthPoint,itemsManaPoint,itemsDefensePoint){
+    super(itemsJob,itemsPrice,itemsHealthPoint,itemsManaPoint,itemsDefensePoint);
+    this.itemsName = itemsName;
+    this.itemsJob = itemsJob;
+    this.itemsHealthPoint = itemsHealthPoint;
+    this.itemsManaPoint = itemsManaPoint;
+    this.itemsDefensePoint= itemsDefensePoint
+    this.itemsPrice = itemsPrice;
+  }
+}
+
+let pedang = new Pedang('Pedang',['Assassin','Knight'],300,200,100,150)
+let magicRod = new TongkatSihir('Magic Rod',['Mage'],250,100,300,50);
+
+let rikimaru = new Assassin('Rikimaru','Assassin',1200,543,431,1200,[pedang,magicRod]);
+let leonidas = new Knight('Leonidas','Knight',3213,126,431,1700,[pedang]);
+let gandalf = new Mage('Gandalf','Mage',1130,603,231,2500,[pedang]);
+let ezio = new Assassin('Ezio','Assassin',1250,523,431,2100,[magicRod]);
+
+gandalf.buyItem(magicRod);
+console.log(gandalf);
+gandalf.sellItem(magicRod)
+console.log(gandalf);
