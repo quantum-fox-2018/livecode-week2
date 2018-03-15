@@ -57,8 +57,8 @@ class Players{
                             this._players[index].mana += wep.manapoint;
                             this._players[index].attack += wep.attackpoint;
                             console.log('Transaction is complete!')
+                            
                         }
-                        
                     }   
                 }
             }
@@ -68,26 +68,42 @@ class Players{
     sellItem(name, nameOfItem){
         for(let index = 0; index<this._players.length; index++){
             if(this._players[index].name == name){
-                for(let indexItem = 0; indexItem<this._players.items.length; indexItem++){
-                    if(nameOfItem == this._players.items[indexItem].itemName){
+                for(let indexItem = 0; indexItem<this._players[index].items.length; indexItem++){
+                    if(nameOfItem == this._players[index].items[indexItem].itemName){
                         if(nameOfItem == 'Sword'){
                             let wep = new Sword();
-                            this._players.health -= wep.healthpoint;
-                            this._players.mana -= wep.manapoint;
-                            this._players.attack -= wep.attackpoint;
-                            this._players.money += wep.money/2;
+                            this._players[index].health -= wep.healthpoint;
+                            this._players[index].mana -= wep.manapoint;
+                            this._players[index].attack -= wep.attackpoint;
+                            this._players[index].money += wep.price/2;
 
                             let newItemArr = [];
-                            for(let indexItem2 = 0; indexItem2<indexItem<this._players.items.length; indexItem2++){
+                            for(let indexItem2 = 0; indexItem2<this._players[index].items.length; indexItem2++){
                                 if(indexItem2 != indexItem){
-                                    newItemArr.push(this._players.items[indexItem2]);
+                                    newItemArr.push(this._players[index].items[indexItem2]);
                                 }
                             }
-                            this._players.items = newItemArr;
+                            this._players[index].items = newItemArr;
+                            console.log(`You have sell your ${nameOfItem}`);
+                        }else if(nameOfItem == 'Staff'){
+                            let wep = new Staff();
+                            this._players[index].health -= wep.healthpoint;
+                            this._players[index].mana -= wep.manapoint;
+                            this._players[index].attack -= wep.attackpoint;
+                            this._players[index].money += wep.price/2;
+
+                            let newItemArr = [];
+                            for(let indexItem2 = 0; indexItem2<this._players[index].items.length; indexItem2++){
+                                if(indexItem2 != indexItem){
+                                    newItemArr.push(this._players[index].items[indexItem2]);
+                                }
+                            }
+                            this._players[index].items = newItemArr;
+                            console.log(`You have sell your ${nameOfItem}`);
                         }
                     }
-                }
-                break; //Ini untuk biar yang ke jual cuman 1 item saja
+                    break; //Ini untuk biar yang ke jual cuman 1 item saja
+                }  
             }
         }
     }
@@ -366,5 +382,8 @@ player.createPlayer('Ezio', 'Assasin');
 console.log(player.showPlayers());
 
 player.buyItems('Leonidas', 'Sword');
-console.log('================================================================\n\n', player.showPlayers());
-player.buyItems('Leonidas', 'Staff');
+console.log('\n\n================================================================\n\n',player.showPlayers());
+// player.buyItems('Leonidas', 'Staff');
+player.sellItem('Leonidas', 'Sword');
+
+console.log('\n\n================================================================\n\n', player.showPlayers());
