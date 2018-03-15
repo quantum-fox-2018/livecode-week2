@@ -6,7 +6,30 @@ class Heroes{
         this._mana =  mana
         this._attack = attack
         this._money = money
+        this._item = []
     }
+
+    buyItem(item){
+        for(let i=0; i<item._job.length; i++){
+            if(item._job[i] == this._job && item._price <= this._money){
+                this._health += item._healthpoint
+                this._mana += item._manapoint
+                this._attack += item._attackpoint
+                this._money -= item._price
+                this._item.push(item)
+            }
+        }
+    }
+
+    sellItem(item){
+        this._health -= item._healthpoint
+        this._mana -= item._manapoint
+        this._attack -= item._attackpoint
+        this._money += item._price*(50/100)
+        
+    }
+    
+    
 }
 
 class Rikimaru extends Heroes{
@@ -53,4 +76,12 @@ console.log(hero)
 
 let pedang = new Items('Pedang',['Assassin','Knight'], 'Pedang Warisan Dewa', 800, 400, 1000, 900)
 let tongkat = new Items('Tongkat', ['Mage'], 'Tongkat Sakti Harry Potter', 2200, 600, 200, 1500)
-console.log(pedang)
+// console.log(pedang)
+
+
+console.log('=================')
+hero.buyItem(pedang)
+console.log(hero)
+console.log('=================')
+hero.sellItem(pedang)
+console.log(hero)
