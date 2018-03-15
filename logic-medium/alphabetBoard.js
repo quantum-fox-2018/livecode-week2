@@ -18,8 +18,18 @@ function checkConsonantInBox(dimensiArea, row, column){
   let alphabetBoard = generateAlphabetBoard(dimensiArea);
   let box = Math.pow(dimensiArea, 2)
   console.log(alphabetBoard);
+
   let indexRow = 0;
   let indexColumn = 0;
+  // for(let i=dimensiArea; i<box; i+=dimensiArea){
+  //   if(row<=i){
+  //     indexRow = i - dimensiArea
+  //   }
+  //
+  //   if(column<=i){
+  //     indexColumn = i - dimensiArea
+  //   }
+  // }
   if(row > 0 && row <= 3){
     indexRow = 0
   }else if (row >3 && row<=6) {
@@ -39,7 +49,8 @@ function checkConsonantInBox(dimensiArea, row, column){
   let result;
   for(let i=indexRow; i<indexRow+dimensiArea; i++){
     for(let j=indexColumn ; j<indexColumn+dimensiArea; j++){
-      console.log(alphabetBoard[i][j]);
+      // console.log(indexRow, indexColumn);
+      // console.log(alphabetBoard[i][j]);
       console.log(vowel.indexOf(alphabetBoard[i][j]));
       if(vowel.indexOf(alphabetBoard[i][j]) === -1){
         result = true
@@ -51,5 +62,4 @@ function checkConsonantInBox(dimensiArea, row, column){
   return result
 }
 
-// console.log(generateAlphabetBoard(3));
-console.log(checkConsonantInBox(4,1,5));
+console.log(checkConsonantInBox(3,0,9));
