@@ -4,11 +4,16 @@
 
 **Note**
 
-Untuk soal ini, tidak dibuatkan driver code. Karena itu, lakukan analisa setiap function yang diminta dan sesuaikan parameter-parameter yang dibutuhkan. Fokus dari soal ini adalah logika mengenerate sebuah nested array untuk board dan melakukan pengecekan.
+Untuk soal ini, tidak dibuatkan driver code. Karena itu,
+lakukan analisa setiap function yang diminta dan sesuaikan parameter-parameter yang dibutuhkan.
+Fokus dari soal ini adalah logika mengenerate sebuah nested array untuk board dan melakukan pengecekan.
 
 ## Release 0
 
-Buatlah sebuah function bernama `generateAlphabetBoard` yang akan menghasilkan nested array sebanyak n x n dan berisikan random huruf a sampai z. n adalah dimensi area box yang diisi oleh user. Jadi misal jika dimensi area box nya adalah 3, maka nested array akan membentuk board 9 x 9. Jika area box adalah 4, maka nested array akan membentuk board 16 x 16.
+Buatlah sebuah function bernama `generateAlphabetBoard` yang akan menghasilkan
+nested array sebanyak n x n dan berisikan random huruf a sampai z. n adalah dimensi area box
+yang diisi oleh user. Jadi misal jika dimensi area box nya adalah 3, maka nested array akan
+membentuk board 9 x 9. Jika area box adalah 4, maka nested array akan membentuk board 16 x 16.
 
 ## Release 1
 

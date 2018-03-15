@@ -1,5 +1,6 @@
 const job_list = ['assasin', 'knight', 'mage', ]
 
+//mau bikin tiap2 item, hero, sama monster class sendiri trus inherit, tp gk cukup waktunya
 class Hero{
   constructor(name, job, health, mana, attack, money){
     this.name = name;
@@ -61,32 +62,51 @@ class Monster{
 }
 
 class BattleGround{
-  constructor(){
+  constructor(hero,monster){
     this.hero = hero;
     this.monster = monster;
   }
 
   heroAttack(){
+    let damageDealt = 0;
     if(this.monster.weakness === this.hero.job){
-      this.monster.health -= this.hero.attack + (this.hero.attack / 2);
+      damageDealt = this.hero.attack + Math.round(this.hero.attack / 2);
+      this.monster.health -= damageDealt;
     } else {
-      this.monster.health -= this.hero.attack;
+      damageDealt = this.hero.attack;
+      this.monster.health -= damageDealt;
     }
     if(this.monster.health > 0){
-      
+      console.log('Kamu Berhasil Menyerang ' +this.monster.name+
+      ' dengan jumlah serangan ' +damageDealt+ ' Darah monster tersisa ' +this.monster.health+ ' terus berjuang')
+      return false;
+    } else{
+      console.log('Kamu berhasil membunuh monster '+this.monster.name +'. dan sisa darah kamu adalah ' + this.hero.health)
+      return true;
     }
   }
 
   monsterAttack(){
-
+    this.hero.health -= this.monster.attack;
+    if(this.hero.health > this.monster.attack){
+      console.log('Monster ' +this.monster.name+
+      ' Berhasil Menyerang kamu dengan jumlah serangan ' +this.monster.attack+ ' Darah kamu tersisa ' +this.hero.health+ ' jadi barhati-hatilah')
+      return false;
+    } else{
+      console.log('Kamu kalah sebaiknya pulang ke kota dan beli item lagi')
+      return true;
+    }
   }
 
   battle(){
-    if(this.monster.health > this.hero.attack){
-      this.heroAttack();
-    }
-    if(this.hero.health > this.monster.attack){
-      this.monsterAttack();
+    let end = false;
+    while(!end){
+      if(!end){
+        end = this.heroAttack();
+      }
+      if(!end){
+        end = this.monsterAttack();
+      }
     }
   }
 }
@@ -103,17 +123,20 @@ let leonidas = new Hero('Leonidas', 'knight', 3213, 126, 431, 1700);
 let gandalf = new Hero('Gandalf', 'mage', 1130, 603, 231, 2500);
 let ezio = new Hero('Ezio', 'assasin', 1250, 523, 431, 2100);
 
-let kobold = new Monster('kobold',250, 300, 'mage');
-let centaur = new Monster('centaur',1250, 250, 'assasin');
+let kobold = new Monster('kobold',1250, 400, 'mage');
+let centaur = new Monster('centaur',4250, 250, 'assasin');
 
 rikimaru.buyItem([dagon,buriza,yasha]);
 leonidas.buyItem([buriza,taras,vanguard]);
 gandalf.buyItem([yasha,dagon,aghanim]);
 ezio.buyItem([taras,yasha,buriza]);
 
-// rikimaru.sellItem('buriza');
-// leonidas.sellItem('taras');
-// gandalf.sellItem('dagon');
-// ezio.sellItem('yasha');
+rikimaru.sellItem('buriza');
+leonidas.sellItem('taras');
+gandalf.sellItem('dagon');
+ezio.sellItem('yasha');
 
 console.log(rikimaru, leonidas, gandalf, ezio);
+
+let farming = new BattleGround(rikimaru,centaur);
+farming.battle();
