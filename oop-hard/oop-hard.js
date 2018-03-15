@@ -53,17 +53,15 @@ class Hero {
     }
 
     while(this.health >= 0 || monster.health >= 0) {
-      
       let currentHealthMonster = monster.health - this.attack
-
       if(currentHealthMonster <= 0) {
-        return console.log(`Kamu berhasil membunuh monster ${monster.name}. dan sisa darah kamu adalah ${this.health}`)
+        this.attack -= (this.attack/2)
+        return `Kamu berhasil membunuh monster ${monster.name}. dan sisa darah kamu adalah ${this.health}`
       } else {
         monster.health -= this.attack
-    
         let currentHealthPlayer = this.health - monster.attack
         if(currentHealthPlayer <= 0) {
-          return console.log(`Kamu kalah sebaiknya pulang ke kota dan beli item lagi`)
+          return `Kamu kalah sebaiknya pulang ke kota dan beli item lagi`
         }
         this.health -= monster.attack
       }
@@ -76,21 +74,18 @@ class Hero {
 class Assassin extends Hero {
   constructor(player) {
     super(player)
-    // this.skill = "Ciat..! Serangan tanpa bayangan.."
   }
 }
 
 class Knight extends Hero {
   constructor(player) {
     super(player)
-    // this.skill = "Lemparan Perisai Suci"
   }
 }
 
 class Mage extends Hero {
   constructor(player) {
     super(player)
-    // this.skill = "Terimalah serangan sihir ini.."
   }
 }
 
@@ -142,16 +137,16 @@ class Item {
 }
 
 let blade = new Item({
-  name: 'Bloody Blade',
+  name: 'Divine Rapier',
   job: 'Assassin',
   price: 2000,
   healthpoint: 500,
   manapoint: 200,
-  attackpoint: 100
+  attackpoint: 1000
 })
 
-let book = new Item({
-  name: 'Book of Universe',
+let ward = new Item({
+  name: 'Sentry Ward',
   job: 'Mage',
   price: 1500,
   healthpoint: 300,
@@ -159,10 +154,12 @@ let book = new Item({
   attackpoint: 200
 })
 
-// console.log(rikimaru)
+////testcase: instense Hero baru, dan menggunakan skill sesuai dengan job yang dimiliki
+console.log(rikimaru)
 // console.log(rikimaru.skill())
 // console.log(gandalf.skill())
 
+////testcase: instense Item baru dan method membeli (sesuai dengan job, money) dan menjualnya kembali
 // console.log(blade)
 // console.log(rikimaru.buyItem(blade))
 // console.log(rikimaru)
@@ -194,13 +191,22 @@ let centaur = new Monster({
 
 let bahamut = new Monster({
   name: 'Bahamut',
-  health: 40000,
-  attack: 500,
+  health: 4000,
+  attack: 250,
   weakness: 'Knight'
 })
 
 console.log(centaur)
 console.log(bahamut)
 
-gandalf.attackMonster(centaur)
-gandalf.attackMonster(bahamut)
+console.log(gandalf.attackMonster(centaur))
+console.log(gandalf.attackMonster(bahamut))
+
+console.log(gandalf.buyItem(ward))
+console.log(gandalf.attackMonster(bahamut))
+console.log(bahamut)
+console.log(ezio)
+console.log(ezio.attackMonster(bahamut))
+console.log(bahamut)
+console.log(leonidas)
+console.log(leonidas.attackMonster(bahamut))
