@@ -20,16 +20,8 @@ function generateAlphabetBoard (number) {
         }
       }
     }
-    console.log(resultBoard)
+    return resultBoard
 
-    var newArr = []
-    for(let j = 0 ; j < resultBoard.length ; j++){
-      for(let k = 0 ; k < resultBoard[j].length ; k++){
-        console.log(j,k)
-      }
-    }
-
-    console.log(newArr)
   }
 
 
