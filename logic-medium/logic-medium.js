@@ -18,7 +18,17 @@ function generateAlphabetBoard(input){
 var board = generateAlphabetBoard(3)
 
 function checkConsonantInBox(board, rowIdx, colIdx){
-    return board
+    let vocal = 'AIUEO'
+    rowIdx = Math.floor(rowIdx/3)*3
+    rowIdx = Math.floor(colIdx/3)*3
+
+    for(let i=rowIdx; i<rowIdx+3; i++){
+        for(let j=colIdx; j<colIdx+3; j++){
+            if(board[i][j] == vocal[i]){
+                
+            }
+        }
+    }
 }
 
 
