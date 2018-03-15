@@ -1,6 +1,8 @@
 # SUMMON HERO
 
-buatlah sebuah permainan RPG yang terdapat 3 pahlawan yaitu Assassin, Mage, Knight. Ketiga pahlawan ini sama-sama memiliki name, job, health, mana, defense, money, items dan masing-masih hero memiliki skill yang berbeda-beda.
+buatlah sebuah permainan RPG yang terdapat 3 pahlawan yaitu Assassin, Mage, Knight.
+Ketiga pahlawan ini sama-sama memiliki name, job, health, mana, defense, money,
+items dan masing-masih hero memiliki skill yang berbeda-beda.
 
 ```text
 Assassin memiliki skill yang akan mereturn ‘Ciat..! Serangan tanpa bayangan..’
@@ -65,7 +67,8 @@ name, health, attack, weakness
 
 buatlah 2 monster apa saja, yang sesuai dengan kondisi diatas
 
-buatlah method untuk menyerang monster karena ini permainan RPG yang bersifat '*turn base*' maka setelah karakter menyerang maka monster akan menyerang.
+buatlah method untuk menyerang monster karena ini permainan RPG yang bersifat '*turn base*'
+maka setelah karakter menyerang maka monster akan menyerang.
   - health monster akan berkurang sesuai dengan jumlah attack karakter
   - jika monster mati pada saat diserang maka monster tidak dapat menyerang balik karakter tetapi jika health monster masih tersisa maka monster dapat menyerang karakter
   - jika job karakter sama dengan weakness dari monster maka serangan akan bertambah 50%
