@@ -15,12 +15,18 @@ function generateAlphabetBoard(input){
 }
 
 function checkConsonantInBox(input){
-  let vocal = 'aiueo'
-
+  let vocal = 'AIUEO'
+  let board = generateAlphabetBoard(input);
+  let result = '';
   for(let i = 0; i < input; i++){
     for(let j = 0; j < input; j++){
-
+      if(vocal.indexOf(board[i][j]) == -1){
+        result = true;
+      } else {
+        return false;
+      }
     }
+    return result;
   }
 
 }
