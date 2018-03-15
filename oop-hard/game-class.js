@@ -110,20 +110,20 @@ class Players{
 
     playerAtk(name){
         for(let index = 0; index<this._players.length; index++){
-            if(name == this._players.name){
+            if(name == this._players[index].name){
                 let meetMonster = Math.round(Math.random())
 
                 if(meetMonster == 1){
                     let monster = new Slime();
-                    let atkPts = this._players[index].attackpoint;
-                    if(this._players[index].job == 'Mage'){
-                        atkPts += (this._players[index].attackpoint / 2)
+                    let atkPts = this._players[index].attack;
+                    if(this._players[index].job == monster.weakness){
+                        atkPts += (this._players[index].attack / 2)
                     }
                     monster.health -= atkPts;
                     this._players.health -= monster.attack;
-
+                    
                     if(monster.health <= 0){
-                        console.log(`Kamu berhasil membunuh ${monster.name} dan sisa darah kamu adalah ${this._players.health}`)
+                        console.log(`Kamu berhasil membunuh ${monster.name} dan sisa darah kamu adalah ${this._players[index].health}`)
                     }else if(monster.health > 0){
                         console.log(`Kamu Berhasil Menyerang ${monster.name} dengan jumlah serangan ${atkPts} Darah kamu terisaa ${this._players[index].health} jadi barhati-hatilah`)
                     }else if(this._players[index].health <= 0){
@@ -131,15 +131,15 @@ class Players{
                     }
                 }else if(meetMonster == 0){
                     let monster = new Wolf();
-                    let atkPts = this._players[index].attackpoint;
-                    if(this._players[index].job == 'Mage'){
-                        atkPts += (this._players[index].attackpoint / 2)
+                    let atkPts = this._players[index].attack;
+                    if(this._players[index].job == monster.weakness){
+                        atkPts += (this._players[index].attack / 2)
                     }
                     monster.health -= atkPts;
                     this._players.health -= monster.attack;
-
+                    
                     if(monster.health <= 0){
-                        console.log(`Kamu berhasil membunuh ${monster.name} dan sisa darah kamu adalah ${this._players.health}`)
+                        console.log(`Kamu berhasil membunuh ${monster.name} dan sisa darah kamu adalah ${this._players[index].health}`)
                     }else if(monster.health > 0){
                         console.log(`Kamu Berhasil Menyerang ${monster.name} dengan jumlah serangan ${atkPts} Darah kamu terisaa ${this._players[index].health} jadi barhati-hatilah`)
                     }else if(this._players[index].health <= 0){
@@ -334,7 +334,7 @@ class Sword extends Items{
 }
 
 class Monster{
-    constructor(){
+    constructor(name, health, attack, weakness){
         this._name = name;
         this._health = health;
         this._attack = attack;
@@ -349,8 +349,16 @@ class Monster{
         this._health = health
     }
 
+    get health(){
+        return this._health;
+    }
+
     get attack(){
         return this._attack;
+    }
+
+    get weakness(){
+        return this._weakness;
     }
 }
 
@@ -374,6 +382,7 @@ class Wolf extends Monster{
 // 3. Name: Gandalf, Job: Mage, Health: 1130, Mana: 603, Defense: 231, Money: 2500
 // 4. Name: Ezio, Job: Assassin, Health: 1250, Mana: 523, Defense: 431, Money: 2100
 
+//Test create player
 let player = new Players();
 player.createPlayer('Rikimaru', 'Assasin')
 player.createPlayer('Leonidas', 'Knight')
@@ -381,9 +390,15 @@ player.createPlayer('Gandalf', 'Mage')
 player.createPlayer('Ezio', 'Assasin');
 console.log(player.showPlayers());
 
+//Test Buy
 player.buyItems('Leonidas', 'Sword');
 console.log('\n\n================================================================\n\n',player.showPlayers());
 // player.buyItems('Leonidas', 'Staff');
-player.sellItem('Leonidas', 'Sword');
+// player.sellItem('Leonidas', 'Sword');
 
-console.log('\n\n================================================================\n\n', player.showPlayers());
+// console.log('\n\n================================================================\n\n', player.showPlayers());
+
+//Test atk
+for(let atk =0; atk<2; atk++){
+    player.playerAtk('Leonidas');
+}
