@@ -33,36 +33,57 @@ class Hero {
     }
 
     attackMonster(objMonster) {
-        let statusAttack = true;
-        while(this._health > 0 || objMonster._health > 0 && statusAttack == true) {
+        // let statusAttack = true;
+        while(this._health > 0 || objMonster._health > 0) {
             if (objMonster._weakness == this._job) {
                 this._attack = (this._attack * 1.5);
-                objMonster._health -= this._attack;
-                console.log(`Kamu Berhasil Menyerang ${objMonster._name} dengan jumlah serangan ${this._attack} Darah kamu terisaa ${this._health} jadi barhati-hatilah`)
-                this._health -= objMonster._attack;
-                console.log(`Monster ${objMonster._name} menyerang balik sebesar ${objMonster._attack} ! Sisa nyawa monster adalah ${objMonster._health}. Sisa nyawa Anda adalah ${this._health}`)
+                console.log(`Critical attack activated !`);
+                
+                if (this._health > 0) {
+                    objMonster._health -= this._attack;
+                    console.log(`Kamu Berhasil Menyerang ${objMonster._name} dengan jumlah serangan ${this._attack} Darah kamu terisaa ${this._health} jadi barhati-hatilah`)    
+                }
+                
+                if (objMonster._health > 0) {
+                    this._health -= objMonster._attack;
+                    console.log(`Monster ${objMonster._name} menyerang balik sebesar ${objMonster._attack} ! Sisa nyawa monster adalah ${objMonster._health}. Sisa nyawa Anda adalah ${this._health}`)    
+                }
                 
                 if (objMonster._health <= 0) {
                     console.log(`Kamu berhasil membunuh monster ${objMonster._name}. dan sisa darah kamu adalah ${this._health}`);
-                    statusAttack = false;
-                } else if (this._health <= 0) {
+                    // statusAttack = false;
+                    break;
+                } 
+                
+                if (this._health <= 0) {
                     console.log(`Kamu kalah sebaiknya pulang ke kota dan beli item lagi`);
-                    statusAttack = false;
+                    // statusAttack = false;
+                    break;
                 }
         
             } else {
-                objMonster._health -= this._attack;
-                console.log(`Kamu Berhasil Menyerang ${objMonster._name} dengan jumlah serangan ${this._attack} Darah kamu terisaa ${this._health} jadi barhati-hatilah`)
-                this._health -= objMonster._attack;
-                console.log(`Monster ${objMonster._name} menyerang balik sebesar ${objMonster._attack} ! Sisa nyawa monster adalah ${objMonster._health}. Sisa nyawa Anda adalah ${this._health}`)    
-            }
 
-            if (objMonster._health <= 0) {
-                console.log(`Kamu berhasil membunuh monster ${objMonster._name}. dan sisa darah kamu adalah ${this._health}`);
-                statusAttack = false;
-            } else if (this._health <= 0) {
-                console.log(`Kamu kalah sebaiknya pulang ke kota dan beli item lagi`);
-                statusAttack = false;
+                if (this._health > 0) {
+                    objMonster._health -= this._attack;
+                    console.log(`Kamu Berhasil Menyerang ${objMonster._name} dengan jumlah serangan ${this._attack} Darah kamu terisaa ${this._health} jadi barhati-hatilah`)    
+                }
+                
+                if (objMonster._health > 0) {
+                    this._health -= objMonster._attack;
+                    console.log(`Monster ${objMonster._name} menyerang balik sebesar ${objMonster._attack} ! Sisa nyawa monster adalah ${objMonster._health}. Sisa nyawa Anda adalah ${this._health}`)    
+                }
+                
+                if (objMonster._health <= 0) {
+                    console.log(`Kamu berhasil membunuh monster ${objMonster._name}. dan sisa darah kamu adalah ${this._health}`);
+                    // statusAttack = false;
+                    break;
+                } 
+                
+                if (this._health <= 0) {
+                    console.log(`Kamu kalah sebaiknya pulang ke kota dan beli item lagi`);
+                    // statusAttack = false;
+                    break;
+                }
             }
         }
     }
