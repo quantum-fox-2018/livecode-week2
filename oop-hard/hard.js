@@ -6,7 +6,18 @@ class Hero {
     this.mana = mana
     this.attack = attack
     this.money = money
+    this.skill = this.skills()
     this.items = []
+  }
+
+  skills(){
+    if(this.job=='Assassin'){
+      return `Ciat..! Serangan tanpa bayangan..`
+    } else if(this.job=='Knight'){
+      return `Lemparan Perisai Suci`
+    } else if(this.job=='Mage'){
+      return `Terimalah serangan sihir ini..`
+    }
   }
 }
 
@@ -87,12 +98,15 @@ class Battle {
       newAttack = hero.attack
       monster.health -= hero.attack
     }
+    if(monster.attack>hero.health && monster.health>0){
+      return `Kamu kalah sebaiknya pulang ke kota dan beli item lagi`
+    }
     if(monster.health>0){
       hero.health -= monster.attack
     } else {
       return `Kamu berhasil membunuh monster ${monster.name}. dan sisa darah kamu adalah ${hero.health}`
     }
-    if(monster.attack>=hero.health || hero.health==0){
+    if(hero.health==0){
       return `Kamu kalah sebaiknya pulang ke kota dan beli item lagi`
     }
     return `Kamu Berhasil Menyerang ${monster.name} dengan jumlah serangan ${newAttack} Darah kamu tersisa ${hero.health} jadi berhati-hatilah`
@@ -121,14 +135,18 @@ let gandalf = EditHero.makeHero('Gandalf','Mage',1130,603,231,2500)
 let ezio = EditHero.makeHero('Ezio','Assassin',1250,523,431,2100)
 
 let picolo = new Monster('Picolo',1000,300,'Knight')
-let bhu = new Monster('Bhu',1500,1000,'Assassin')
+let bhu = new Monster('Bhu',1500,1500,'Assassin')
+
+let pedangSakti = specialItems[0]
+let armorSakti = specialItems[1]
 
 EditHero.buyItems(rikimaru)
 EditHero.buyItems(leonidas)
 EditHero.buyItems(gandalf)
 EditHero.buyItems(ezio)
-// EditHero.sellItem(specialItems[0],leonidas)
-// console.log(rikimaru)
+// EditHero.sellItem(pedangSakti,leonidas)
+console.log(rikimaru)
+console.log(bhu)
 // console.log(leonidas)
 // console.log(gandalf)
 // console.log(ezio)
