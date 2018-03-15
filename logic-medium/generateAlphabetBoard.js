@@ -1,3 +1,4 @@
+// release 0
 function generateAlphabetBoard(num) {
     let alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let board = [];
@@ -15,10 +16,8 @@ function generateAlphabetBoard(num) {
     return board;
 }
 
+//release 1
 function checkConsonantInBox(row, col, num) {
-    let boardAlphabet = generateAlphabetBoard(num);
-    for(let i = 0; i < boardAlphabet.length; i++) {
-    }
 }
 
 checkConsonantInBox(0, 0, 3);

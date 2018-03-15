@@ -1,24 +1,27 @@
 "use strict"
 
 class CharacterGame {
-    constructor(name, job, health, mana, attack, money) {
+    constructor(name, job, health, mana, attack, money, item) {
         this.name = name;
         this.job = job;
         this.health = health;
         this.mana = mana;
         this.attack = attack;
         this.money = money;
+        this.item = item;
     }
 
     buyItem() {
         let sword = new Sword();
         let stuff = new Stuff();
 
+
         if (this.job === sword.item_job_name && this.money >= sword.item_price) {
             this.health += sword.item_healthpoint;
             this.mana += sword.item_manapoint;
             this.attack += sword.item_attackpoint;
             this.money -= sword.item_price;
+            this.item.push(sword.item_name);
         }
 
         if (this.job === stuff.item_job_name && this.money >= stuff.item_price) {
@@ -26,50 +29,104 @@ class CharacterGame {
             this.mana += stuff.item_manapoint;
             this.attack += stuff.item_attackpoint;
             this.money -= stuff.item_price;
+            this.item.push(stuff.item_name);
         }
     }
+
+    sellItem() {
+        let sword = new Sword();
+        let stuff = new Stuff();
+
+        if (this.item.includes(sword.item_name) === true) {
+            this.health -= sword.item_healthpoint;
+            this.mana -= sword.item_manapoint;
+            this.attack -= sword.item_attackpoint;
+            this.money += sword.item_price / 2;
+            this.item.pop();
+        }
+
+        if (this.item.includes(stuff.item_name) === true) {
+            this.health += stuff.item_healthpoint;
+            this.mana += stuff.item_manapoint;
+            this.attack += stuff.item_attackpoint;
+            this.money -= stuff.item_price / 2;
+            this.item.pop();
+        }
+    }
+
+
 }
 
 class Rikimaru extends CharacterGame {
     constructor() {
-        super('Rikimaru', 'Assassin', 1200, 543, 431, 1200);
+        super('Rikimaru', 'Assassin', 1200, 543, 431, 1200, []);
+        this.buy_or_sell = new CharacterGame(this.name, this.job, this.health, this.mana, this.attack, this.money, this.item);
     }
 
-    // buyItem() {
-    //     let sword = new Sword();
-    //     let stuff = new Stuff();
+    buyOrSell(command) {
+        if (command === 'buy') {
+            this.buy_or_sell.buyItem();
+        }
 
-    //     if (this.job === sword.item_job_name && this.money >= sword.item_price) {
-    //         this.health += sword.item_healthpoint;
-    //         this.mana += sword.item_manapoint;
-    //         this.attack += sword.item_attackpoint;
-    //         this.money -= sword.item_price;
-    //     }
+        if(command === 'sell') {
+            this.buy_or_sell.sellItem();
+        }
 
-    //     if (this.job === stuff.item_job_name && this.money >= stuff.item_price) {
-    //         this.health += stuff.item_healthpoint;
-    //         this.mana += stuff.item_manapoint;
-    //         this.attack += stuff.item_attackpoint;
-    //         this.money -= stuff.item_price;
-    //     }
-    // }
+    }
+
 }
 
 class Leonidas extends CharacterGame {
     constructor() {
-        super('Leonidas', 'Knight', 3213, 126, 431, 1700);
+        super('Leonidas', 'Knight', 3213, 126, 431, 1700, []);
+        this.buy_or_sell = new CharacterGame(this.name, this.job, this.health, this.mana, this.attack, this.money, this.item);
+    }
+
+    buyOrSell(command) {
+        if (command === 'buy') {
+            this.buy_or_sell.buyItem();
+        }
+
+        if(command === 'sell') {
+            this.buy_or_sell.sellItem();
+        }
+
     }
 }
 
 class Gandalf extends CharacterGame {
     constructor() {
-        super('Gandalf', 'Mage', 1130, 603, 231, 2500);
+        super('Gandalf', 'Mage', 1130, 603, 231, 2500, []);
+        this.buy_or_sell = new CharacterGame(this.name, this.job, this.health, this.mana, this.attack, this.money, this.item);
+    }
+
+    buyOrSell(command) {
+        if (command === 'buy') {
+            this.buy_or_sell.buyItem();
+        }
+
+        if(command === 'sell') {
+            this.buy_or_sell.sellItem();
+        }
+
     }
 }
 
 class Ezio extends CharacterGame {
     constructor() {
-        super('Ezio', 'Assassin', 1250, 523, 431, 2100);
+        super('Ezio', 'Assassin', 1250, 523, 431, 2100, []);
+        this.buy_or_sell = new CharacterGame(this.name, this.job, this.health, this.mana, this.attack, this.money, this.item);
+    }
+
+    buyOrSell(command) {
+        if (command === 'buy') {
+            this.buy_or_sell.buyItem();
+        }
+
+        if(command === 'sell') {
+            this.buy_or_sell.sellItem();
+        }
+
     }
 }
 
@@ -79,19 +136,19 @@ class Job {
     }
 }
 
-class Assassin extends Job{
+class Assassin extends Job {
     constructor() {
         super('Ciat..! Serangan tanpa bayangan..')
     }
 }
 
-class Knight extends Job{
+class Knight extends Job {
     constructor() {
         super('Lemparan Perisai Suci')
     }
 }
 
-class Mage extends Job{
+class Mage extends Job {
     constructor() {
         super('Terimalah serangan sihir ini..')
     }
@@ -108,19 +165,23 @@ class Item {
     }
 }
 
-class Sword extends Item{
+class Sword extends Item {
     constructor() {
         super('Excalibur', 'Knight', 1500, 200, 100, 300);
     }
 }
 
-class Stuff extends Item{
+class Stuff extends Item {
     constructor() {
         super('Forcestuff', 'Mage', 1300, 300, 400, 200);
     }
 }
 
+let leonidas = new Leonidas();
 let rikimaru = new Rikimaru();
-let charGame = new CharacterGame();
+let gandalf = new Gandalf();
+let ezio = new Ezio();
 
-rikimaru.buyItem();
+leonidas.buyOrSell('buy');
+leonidas.buyOrSell('sell');
+console.log(leonidas);
