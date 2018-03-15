@@ -13,6 +13,14 @@ class Players{
         }
     }
 
+    showPlayers(){
+        let resultStr = '';
+        for(let index = 0; index<this._players.length; index++){
+            resultStr += `${index+1}. Name: ${this._players[index].name}, Job: ${this._players[index].job}, Health: ${this._players[index].health}, Mana: ${this._players[index].mana}, Attack: ${this._players[index].attack}, Money: ${this._players[index].money}\n`
+        }
+        return resultStr;
+    }
+
     buyItems(name, nameOfItem){
         for(let index = 0; index<this._players.length; index++){
             if(name == this._players[index].name){
@@ -31,8 +39,8 @@ class Players{
                             this._players[index].items.push(new Sword());
                             this._players[index].money -= price;
                             this._players[index].health += wep.healthpoint;
-                            this._players[index].manapoint += wep.manapoint;
-                            this._players[index].attackpoint += wep.attackpoint;
+                            this._players[index].mana += wep.manapoint;
+                            this._players[index].attack += wep.attackpoint;
                             console.log('Transaction is complete!')
                         }
 
@@ -46,8 +54,8 @@ class Players{
                             this._players[index].items.push(new Staff());
                             this._players[index].money -= price;
                             this._players[index].health += wep.healthpoint;
-                            this._players[index].manapoint += wep.manapoint;
-                            this._players[index].attackpoint += wep.attackpoint;
+                            this._players[index].mana += wep.manapoint;
+                            this._players[index].attack += wep.attackpoint;
                             console.log('Transaction is complete!')
                         }
                         
@@ -65,8 +73,8 @@ class Players{
                         if(nameOfItem == 'Sword'){
                             let wep = new Sword();
                             this._players.health -= wep.healthpoint;
-                            this._players.manapoint -= wep.manapoint;
-                            this._players.attackpoint -= wep.attackpoint;
+                            this._players.mana -= wep.manapoint;
+                            this._players.attack -= wep.attackpoint;
                             this._players.money += wep.money/2;
 
                             let newItemArr = [];
@@ -167,6 +175,31 @@ class Assasin extends Hero{
         this._health = Math.round(Math.random()*50)+1200;
         this._mana = Math.round(Math.random()*20)+520;
         this._attack = Math.round(Math.random()*5)+430;
+        this._skill = 'Ciat..! Serangan tanpa bayangan..'
+    }
+
+    get health(){
+        return this._health;
+    }
+
+    get mana(){
+        return this._mana;
+    }
+
+    get attack(){
+        return this._attack;
+    }
+
+    set health(health){
+        this._health = health;
+    }
+
+    set mana(mana){
+        this._mana = mana;
+    }
+
+    set attack(attack){
+        this._attack = attack;
     }
 }
 
@@ -176,6 +209,31 @@ class Knight extends Hero{
         this._health = Math.round(Math.random()*50)+3200;
         this._mana = Math.round(Math.random()*10)+120;
         this._attack = Math.round(Math.random()*5)+430;
+        this._skill = 'Lemparan Perisai Suci'
+    }
+    
+    get health(){
+        return this._health;
+    }
+
+    get mana(){
+        return this._mana;
+    }
+
+    get attack(){
+        return this._attack;
+    }
+
+    set health(health){
+        this._health = health;
+    }
+
+    set mana(mana){
+        this._mana = mana;
+    }
+
+    set attack(attack){
+        this._attack = attack;
     }
 }
 
@@ -185,6 +243,31 @@ class Mage extends Hero{
         this._health = Math.round(Math.random()*100)+1000;
         this._mana = Math.round(Math.random()*20)+520;
         this._attack = Math.round(Math.random()*5)+430;
+        this._skill = 'Terimalah serangan sihir ini..'
+    }
+    
+    get health(){
+        return this._health;
+    }
+
+    get mana(){
+        return this._mana;
+    }
+
+    get attack(){
+        return this._attack;
+    }
+
+    set health(health){
+        this._health = health;
+    }
+
+    set mana(mana){
+        this._mana = mana;
+    }
+
+    set attack(attack){
+        this._attack = attack;
     }
 }
 
@@ -266,3 +349,22 @@ class Wolf extends Monster{
         super('Wolf', 550, Math.floor(Math.random()*10)+50, 'Assasin') 
     }
 }
+
+
+//DRIVER CODE
+//Players:
+// 1. Name: Rikimaru, Job: Assassin, Health: 1200, Mana: 543, Defense: 431, Money: 1200
+// 2. Name: Leonidas, Job: Knight, Health: 3213, Mana: 126, Defense: 431, Money: 1700
+// 3. Name: Gandalf, Job: Mage, Health: 1130, Mana: 603, Defense: 231, Money: 2500
+// 4. Name: Ezio, Job: Assassin, Health: 1250, Mana: 523, Defense: 431, Money: 2100
+
+let player = new Players();
+player.createPlayer('Rikimaru', 'Assasin')
+player.createPlayer('Leonidas', 'Knight')
+player.createPlayer('Gandalf', 'Mage')
+player.createPlayer('Ezio', 'Assasin');
+console.log(player.showPlayers());
+
+player.buyItems('Leonidas', 'Sword');
+console.log('================================================================\n\n', player.showPlayers());
+player.buyItems('Leonidas', 'Staff');
