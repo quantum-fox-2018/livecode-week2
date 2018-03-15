@@ -38,7 +38,7 @@ class Hero {
         this.mana = this.mana - item.manaPoint
         this.attack = this.attack - item.attackPoint
         this.items.splice(i, 1)
-        //i = this.items.length
+        i = this.items.length
       }
     }
   }

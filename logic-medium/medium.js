@@ -40,11 +40,11 @@ function checkConsonantInBox(row, column){
   for (var i = rowCoordinat; i < rowCoordinat+size; i++) {
     for (var j= ColumCoordinat; j < ColumCoordinat+size; j++) {
       if (vocal.indexOf(resultArr[i][j]) > -1) {
-        return true;
+        return false;
       }
     }
   }
-  return false;
+  return true;
 }
 
 function generateAlphabetBoard(ukuran){
@@ -61,4 +61,4 @@ function generateAlphabetBoard(ukuran){
 }
 
 console.log(generateAlphabetBoard(4));
-console.log(checkConsonantInBox(15,11))
+console.log(checkConsonantInBox(6,11))

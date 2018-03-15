@@ -4,7 +4,7 @@ const Mage = require('./mage.js')
 const Item = require('./item.js')
 const Monster = require('./monster.js')
 
-//name, health, mana, defense, money
+//name, health, mana, attack, money
 var assassinRiki = new Assassin("Rikimaru", 1200, 543, 431, 1200 )
 var knightLeo = new Knight("Leonidas", 3213, 126, 431, 1700 )
 var mageGan = new Mage("Gandalf", 1130, 603, 231, 2500 )
