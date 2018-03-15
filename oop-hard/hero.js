@@ -10,16 +10,9 @@ class Hero {
     this.job = job
   }
 
-  /*
-  item properties
-  this.name = name
-  this.job = job
-  this.detail = detail
-  this.price = price
-  this.healthPoint = healthPoint
-  this.attackPoint = attackPoint
-  this.manaPoint = manaPoint
-  */
+  useSkill(){
+    return this.skill
+  }
 
   buyItem(item){
     if (item.job === this.job) {
@@ -49,7 +42,7 @@ class Hero {
       }
     }
   }
-  //name, health, attack, weakness
+
   attackMonster(monster){
     if (monster.weakness === this.job) {
       this.attack = this.attack * 1.5

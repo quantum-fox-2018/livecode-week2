@@ -60,5 +60,5 @@ function generateAlphabetBoard(ukuran){
   return resultArr
 }
 
-console.log(generateAlphabetBoard(3));
-console.log(checkConsonantInBox(3,1))
+console.log(generateAlphabetBoard(4));
+console.log(checkConsonantInBox(15,11))
