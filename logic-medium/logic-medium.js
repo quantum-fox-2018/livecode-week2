@@ -15,4 +15,12 @@ function generateAlphabetBoard(input){
     
 }
 
-console.log(generateAlphabetBoard(3))
+var board = generateAlphabetBoard(3)
+
+function checkConsonantInBox(board, rowIdx, colIdx){
+    return board
+}
+
+
+console.log(checkConsonantInBox(board))
+// console.log(generateAlphabetBoard(3))
