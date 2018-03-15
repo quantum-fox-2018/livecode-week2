@@ -14,7 +14,7 @@ function generateAlphabetBoard(num){
 
 function checkConsonantInBox(y,x,num){
   let myBoard = generateAlphabetBoard(num)
-  console.log(myBoard)
+  console.log(myBoard.join('\n'))
   console.log(`Box in column ${x} and row ${y}`);
   let row = Math.floor(y/num)*num
   let col = Math.floor(x/num)*num
@@ -30,7 +30,7 @@ function checkConsonantInBox(y,x,num){
   return true
 }
 
-var grid = 3
+var grid = 4
 // console.log(checkConsonantInBox(4,3,grid));
 // console.log(checkConsonantInBox(7,5,grid));
 console.log(checkConsonantInBox(1,2,grid));
