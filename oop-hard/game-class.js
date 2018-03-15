@@ -30,7 +30,7 @@ class Players{
                         }else{
                             this._players[index].items.push(new Sword());
                             this._players[index].money -= price;
-                            this._players[index].healthpoint += wep.healthpoint;
+                            this._players[index].health += wep.healthpoint;
                             this._players[index].manapoint += wep.manapoint;
                             this._players[index].attackpoint += wep.attackpoint;
                             console.log('Transaction is complete!')
@@ -45,7 +45,7 @@ class Players{
                         }else{
                             this._players[index].items.push(new Staff());
                             this._players[index].money -= price;
-                            this._players[index].healthpoint += wep.healthpoint;
+                            this._players[index].health += wep.healthpoint;
                             this._players[index].manapoint += wep.manapoint;
                             this._players[index].attackpoint += wep.attackpoint;
                             console.log('Transaction is complete!')
@@ -64,7 +64,7 @@ class Players{
                     if(nameOfItem == this._players.items[indexItem].itemName){
                         if(nameOfItem == 'Sword'){
                             let wep = new Sword();
-                            this._players.healthpoint -= wep.healthpoint;
+                            this._players.health -= wep.healthpoint;
                             this._players.manapoint -= wep.manapoint;
                             this._players.attackpoint -= wep.attackpoint;
                             this._players.money += wep.money/2;
@@ -79,9 +79,52 @@ class Players{
                         }
                     }
                 }
-                break; //Ini untuk biar yang ke jual cuman 
+                break; //Ini untuk biar yang ke jual cuman 1 item saja
             }
         }
+    }
+
+    playerAtk(name){
+        for(let index = 0; index<this._players.length; index++){
+            if(name == this._players.name){
+                let meetMonster = Math.round(Math.random())
+
+                if(meetMonster == 1){
+                    let monster = new Slime();
+                    let atkPts = this._players[index].attackpoint;
+                    if(this._players[index].job == 'Mage'){
+                        atkPts += (this._players[index].attackpoint / 2)
+                    }
+                    monster.health -= atkPts;
+                    this._players.health -= monster.attack;
+
+                    if(monster.health <= 0){
+                        console.log(`Kamu berhasil membunuh ${monster.name} dan sisa darah kamu adalah ${this._players.health}`)
+                    }else if(monster.health > 0){
+                        console.log(`Kamu Berhasil Menyerang ${monster.name} dengan jumlah serangan ${atkPts} Darah kamu terisaa ${this._players[index].health} jadi barhati-hatilah`)
+                    }else if(this._players[index].health <= 0){
+                        console.log('Kamu kalah sebaiknya pulang ke kota dan beli item lagi');
+                    }
+                }else if(meetMonster == 0){
+                    let monster = new Wolf();
+                    let atkPts = this._players[index].attackpoint;
+                    if(this._players[index].job == 'Mage'){
+                        atkPts += (this._players[index].attackpoint / 2)
+                    }
+                    monster.health -= atkPts;
+                    this._players.health -= monster.attack;
+
+                    if(monster.health <= 0){
+                        console.log(`Kamu berhasil membunuh ${monster.name} dan sisa darah kamu adalah ${this._players.health}`)
+                    }else if(monster.health > 0){
+                        console.log(`Kamu Berhasil Menyerang ${monster.name} dengan jumlah serangan ${atkPts} Darah kamu terisaa ${this._players[index].health} jadi barhati-hatilah`)
+                    }else if(this._players[index].health <= 0){
+                        console.log('Kamu kalah sebaiknya pulang ke kota dan beli item lagi');
+                    }
+                }
+            }
+        }
+        
     }
 }
 
@@ -146,7 +189,7 @@ class Mage extends Hero{
 }
 
 class Items{
-    constructor(itemName, job, price, healthpoint, manapoint, defensepoint){
+    constructor(itemName, job, price, healthpoint, manapoint, attackpoint){
         this._itemName = itemName;
         this._job = job;
         this._price = price;
@@ -181,12 +224,45 @@ class Items{
 
 class Staff extends Items{
     constructor(){
-        super('Staff','Mage', '12000', '250', '30', '15');
+        super('Staff','Mage', 1200, 250, 30, 15);
     }
 }
 
 class Sword extends Items{
     constructor(){
-        super('Sword','Knight', '10000', '250', '30', '15');
+        super('Sword','Knight', 1000, 250, 5, 30);
+    }
+}
+
+class Monster{
+    constructor(){
+        this._name = name;
+        this._health = health;
+        this._attack = attack;
+        this._weakness = weakness;
+    }
+
+    get name(){
+        return this._name;
+    }
+
+    set health(health){
+        this._health = health
+    }
+
+    get attack(){
+        return this._attack;
+    }
+}
+
+class Slime extends Monster{
+    constructor(){
+        super('Slime', 300, Math.floor(Math.random()*10)+20, 'Mage');
+    }
+}
+
+class Wolf extends Monster{
+    constructor(){
+        super('Wolf', 550, Math.floor(Math.random()*10)+50, 'Assasin') 
     }
 }
