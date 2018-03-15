@@ -34,6 +34,8 @@ function checkConsonantInBox(row,col){
       counter++
     }
   }
+  console.log('\n');
+  console.log('Chosen Board');
   console.log(arrLetter);
   if(counter>0){
     console.log(false);
