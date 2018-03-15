@@ -34,6 +34,12 @@ class rikimarues{
             }
         }
     }
+
+    attackMonster(monster){
+        if(this._job == monster._weakness){
+            this._attack += this._attack*(50/100)
+        }
+    }
     
     
 }
@@ -89,19 +95,24 @@ let rikimaru = new Rikimaru()
 let leonidas = new Leonidas()
 let gandalf = new Gandalf()
 let ezio = new Ezio()
-console.log(rikimaru)
+// console.log(rikimaru)
 
 
 let pedang = new Items('Pedang',['Assassin','Knight'], 'Pedang Warisan Dewa', 800, 400, 1000, 900)
 let tongkat = new Items('Tongkat', ['Mage'], 'Tongkat Sakti Harry Potter', 2200, 600, 200, 1500)
 // console.log(pedang)
-let monster1 = new Monster('Gorgom', 800, 400, 'Assasin')
+let monster1 = new Monster('Gorgom', 1200, 400, 'Assasin')
 let monster2 = new Monster('Gintama', 1000, 300, 'Mage')
 
 
-console.log('====SETELAH BELI ITEM')
+console.log('====SETELAH BELI ITEM=====')
 rikimaru.buyItem(pedang)
 console.log(rikimaru)
-console.log('====SETELAH JUAL ITEM======')
+console.log('====SETELAH JUAL ITEM=====')
 // rikimaru.sellItem(pedang)
 // console.log(rikimaru)
+
+console.log('=====Bertarung=====')
+rikimaru.attackMonster(monster1)
+console.log(rikimaru)
+console.log(monster1)
