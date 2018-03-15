@@ -11,7 +11,6 @@ Mage  memiliki skill yang akan mereturn ‘Terimalah serangan sihir ini..’
 ## Release 0
 buatlah 4 karakter dengan detail berikut:
 
-
 1. Name: Rikimaru, Job: Assassin, Health: 1200, Mana: 543, Defense: 431, Money: 1200
 2. Name: Leonidas, Job: Knight, Health: 3213, Mana: 126, Defense: 431, Money: 1700
 3. Name: Gandalf, Job: Mage, Health: 1130, Mana: 603, Defense: 231, Money: 2500
