@@ -66,14 +66,6 @@ class Hero {
   }
 
   attack() {
-    if (this.job == 'Assassin') {
-      console.log('Ciat..! Serangan tanpa bayangan..');
-    } else if (this.job == 'Knight') {
-      console.log('Lemparan Perisai Suci..');
-    } else if (this.job == 'Mage') {
-      console.log('Terimalah serangan sihir ini..');
-    }
-
     return this.attack;
   }
 }
@@ -81,18 +73,21 @@ class Hero {
 class Assassin extends Hero {
   constructor(name, job, health, mana, attack, money) {
     super(name, job, health, mana, attack, money);
+    this.shout = 'Ciat..! Serangan tanpa bayangan..'
   }
 }
 
 class Knight extends Hero {
   constructor(name, job, health, mana, attack, money) {
     super(name, job, health, mana, attack, money);
+    this.shout = 'Lemparan Perisai Suci'
   }
 }
 
 class Mage extends Hero {
   constructor(name, job, health, mana, attack, money) {
     super(name, job, health, mana, attack, money);
+    this.shout = 'Terimalah serangan sihir ini..'
   }
 }
 
@@ -128,8 +123,6 @@ class Monster {
   }
 
   attack() {
-    console.log('Monster menyerang!');
-
     return this.attack;
   }
 }
@@ -195,6 +188,7 @@ while (darklord.health > 0) {
         console.log(`${heroes[i].name} attack boosted!`);
       }
       monsters[j].health -= heroDamage;
+      console.log(heroes[i].shout);
       console.log(`**${heroes[i].name} Berhasil Menyerang ${monsters[j].name} dengan jumlah serangan ${heroDamage}. Darah ${heroes[i].name} terisa ${heroes[i].health} jadi barhati-hatilah**`);
 
       if (monsters[j].health <= 0) {
