@@ -39,6 +39,20 @@ class rikimarues{
         if(this._job == monster._weakness){
             this._attack += this._attack*(50/100)
         }
+        monster._health -= this._attack
+        if(monster._health <= 0){
+            // console.log(`Kamu Berhasil Menyerang ${monster._name} dengan jumlah serangan ${this._attack}. Darah kamu tersisa ${this._health}`)
+            console.log(`Kamu berhasil membunuh monster ${monster._name}. Dan sisa darah kamu adalah ${this._health}`)
+        } else if(monster._health >= 0){
+            this._health -= monster._attack
+            if(this._health <= 0 ){
+                console.log(`Udah Pulang Kampung Aja Bang..!!`)
+            }
+            else {
+                console.log(`Kamu Berhasil Menyerang ${monster._name} dengan jumlah serangan ${this._attack}. Darah kamu tersisa ${this._health}. Jadi berhati-hatilah`)
+            }
+            // console.log(`Kamu Berhasil Menyerang ${monster._name} dengan jumlah serangan ${this._attack}. Darah kamu tersisa ${this._health}. Jadi berhati-hatilah`)
+        }
     }
     
     
@@ -101,13 +115,13 @@ let ezio = new Ezio()
 let pedang = new Items('Pedang',['Assassin','Knight'], 'Pedang Warisan Dewa', 800, 400, 1000, 900)
 let tongkat = new Items('Tongkat', ['Mage'], 'Tongkat Sakti Harry Potter', 2200, 600, 200, 1500)
 // console.log(pedang)
-let monster1 = new Monster('Gorgom', 1200, 400, 'Assasin')
+let monster1 = new Monster('Gorgom', 2200, 1500, 'Assassin')
 let monster2 = new Monster('Gintama', 1000, 300, 'Mage')
 
 
 console.log('====SETELAH BELI ITEM=====')
 rikimaru.buyItem(pedang)
-console.log(rikimaru)
+// console.log(rikimaru)
 console.log('====SETELAH JUAL ITEM=====')
 // rikimaru.sellItem(pedang)
 // console.log(rikimaru)
