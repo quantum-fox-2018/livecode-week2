@@ -12,10 +12,10 @@ Mage  memiliki skill yang akan mereturn ‘Terimalah serangan sihir ini..’
 buatlah 4 karakter dengan detail berikut:
 
 
-1. Name: Rikimaru, Job: Assassin, Health: 1200, Mana: 543, Defense: 431, Money: 1200
-2. Name: Leonidas, Job: Knight, Health: 3213, Mana: 126, Defense: 431, Money: 1700
-3. Name: Gandalf, Job: Mage, Health: 1130, Mana: 603, Defense: 231, Money: 2500
-4. Name: Ezio, Job: Assassin, Health: 1250, Mana: 523, Defense: 431, Money: 2100
+1. Name: Rikimaru, Job: Assassin, Health: 1200, Mana: 543, attack: 431, Money: 1200
+2. Name: Leonidas, Job: Knight, Health: 3213, Mana: 126, attack: 431, Money: 1700
+3. Name: Gandalf, Job: Mage, Health: 1130, Mana: 603, attack: 231, Money: 2500
+4. Name: Ezio, Job: Assassin, Health: 1250, Mana: 523, attack: 431, Money: 2100
 
 setiap karakter dapat memiliki lebih dari satu item. setiap item memiliki attribute nama, job, detail, healthpoint, manapoint, defensepoint, price,
 
