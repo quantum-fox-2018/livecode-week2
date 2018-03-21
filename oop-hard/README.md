@@ -1,6 +1,6 @@
 # SUMMON HERO
 
-buatlah sebuah permainan RPG yang terdapat 3 pahlawan yaitu Assassin, Mage, Knight. Ketiga pahlawan ini sama-sama memiliki name, job, health, mana, defense, money, items dan masing-masih hero memiliki skill yang berbeda-beda.
+buatlah sebuah permainan RPG yang terdapat 3 pahlawan yaitu Assassin, Mage, Knight. Ketiga pahlawan ini sama-sama memiliki name, job, health, mana, attack, money, items dan masing-masih hero memiliki skill yang berbeda-beda.
 
 ```text
 Assassin memiliki skill yang akan mereturn ‘Ciat..! Serangan tanpa bayangan..’
@@ -12,12 +12,12 @@ Mage  memiliki skill yang akan mereturn ‘Terimalah serangan sihir ini..’
 buatlah 4 karakter dengan detail berikut:
 
 
-1. Name: Rikimaru, Job: Assassin, Health: 1200, Mana: 543, Defense: 431, Money: 1200
-2. Name: Leonidas, Job: Knight, Health: 3213, Mana: 126, Defense: 431, Money: 1700
-3. Name: Gandalf, Job: Mage, Health: 1130, Mana: 603, Defense: 231, Money: 2500
-4. Name: Ezio, Job: Assassin, Health: 1250, Mana: 523, Defense: 431, Money: 2100
+1. Name: Rikimaru, Job: Assassin, Health: 1200, Mana: 543, attack: 431, Money: 1200
+2. Name: Leonidas, Job: Knight, Health: 3213, Mana: 126, attack: 431, Money: 1700
+3. Name: Gandalf, Job: Mage, Health: 1130, Mana: 603, attack: 231, Money: 2500
+4. Name: Ezio, Job: Assassin, Health: 1250, Mana: 523, attack: 431, Money: 2100
 
-setiap karakter dapat memiliki lebih dari satu item. setiap item memiliki attribute nama, job, detail, healthpoint, manapoint, defensepoint, price,
+setiap karakter dapat memiliki lebih dari satu item. setiap item memiliki attribute nama, job, detail, healthpoint, manapoint, attackpoint, price,
 
 ```
   nama: untuk menyimpan nama dari item tersebut
@@ -25,7 +25,7 @@ setiap karakter dapat memiliki lebih dari satu item. setiap item memiliki attrib
   price: adalah harga dari item tersebut
   healthpoint: jumlah health yang akan bertambah ke dalam health karakter
   manapoint: jumlah mana yang akan bertambah ke dalam mana karakter
-  defensepoint: jumlah defense yang akan bertambah ke dalam defense karakter
+  attackpoint: jumlah attack yang akan bertambah ke dalam attack karakter
 ```
 
 buatlah 2 item apa saja, yang sesuai dengan kondisi diatas
@@ -39,13 +39,13 @@ kalian dapat membeli dan menjual item yang sudah dibuat.
     - method dapat mengvalidasi apakah uang dari karakter cukup untuk membeli item
     - tambahkan healthpoint item ke status health karakter
     - tambahkan manapoint item ke status mana karakter
-    - tambahkan defensepoint item ke status defense karakter
+    - tambahkan attackpoint item ke status attack karakter
     - kurangkan uang yang ada di karakter sesuai dengan harga item
     - input object item kedalam properti items
   - buatlah method sellItem() yang berfungsi untuk menjual item dan mengeluarkannya dari daftar items.
     - kurangkan status health karakter berdasarkan healthpoint item
     - kurangkan status mana karakter berdasarkan manapoint item
-    - kurangkan status defense karakter berdasarkan defensepoint item
+    - kurangkan status attack karakter berdasarkan attackpoint item
     - tambahkan uang karakter berdasarkan 50% dari harga item.
     - kurangkan object item dari properti items
 
